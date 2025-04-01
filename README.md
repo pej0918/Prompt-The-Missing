@@ -100,7 +100,8 @@ We evaluate our framework on two audio-visual benchmarks:
 
 ---
 
-## 🧪 Training Setup
+## ⚙️ Training & Evaluation Setup
+> Note: Although the script name is run_cavmae.py, this implementation corresponds to our proposed method (Prompt the Missing) with customized prompt learning modules.
 
 ### ✨ Prompt Learning (Robust Training)
 Train the prompt-based model with noisy or uncertain modality settings:
