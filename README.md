@@ -158,5 +158,5 @@ TBD
 
 ## 🙏 Acknowledgement
 
-This work builds upon the [CAV-MAE (Contrastive Audio-Visual Masked Autoencoder)](https://github.com/YU-Zhiyang/CAV-MAE) framework.  
+This work builds upon the [CAV-MAE (Contrastive Audio-Visual Masked Autoencoder)](https://github.com/YuanGongND/cav-mae) framework.  
 We sincerely thank the original authors for open-sourcing their code and pre-trained models, which made this research possible.
