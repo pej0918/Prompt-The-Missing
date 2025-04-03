@@ -52,7 +52,7 @@ We simulate modality degradation using a **case-wise training strategy**, enabli
 We evaluate our framework on two audio-visual benchmarks:
 
 - 🎧 [UrbanSound8K-AV](https://www.kaggle.com/datasets/lingyueguo/urbansound8k-av)
-- 📷 [CIFAR10-AV](https://www.kaggle.com/datasets/lingyueguo/cifar10-av))
+- 📷 [CIFAR10-AV](https://www.kaggle.com/datasets/lingyueguo/cifar10-av)
 
 ---
 
