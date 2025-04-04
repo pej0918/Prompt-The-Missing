@@ -39,7 +39,7 @@ We simulate modality degradation using a **case-wise training strategy**, enabli
 
 ## 🧠 Architecture Overview
 
-![image](https://github.com/user-attachments/assets/7bf37eff-3dfa-4a12-8960-d9a87b2c76a6)
+![image](https://github.com/user-attachments/assets/ce6cc96a-83a2-4b5f-83f4-b581fb08c24a)
 
 - **Input-Level Prompt**: Injected before modality encoders.  
 - **Attention-Level Prompt**: Appended into cross-attention keys and values.  
