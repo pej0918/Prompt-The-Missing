@@ -6,34 +6,29 @@
 
 > 📣 Accepted at **CVPR 2025 Workshop, TMM-OpenWorld 2025**  
 > 🔧 Official PyTorch implementation of our paper, **Prompt the Missing**  
-> 🧪 Lightweight, Training-Efficient, and Modality-Aware Prompt Learning Framework
+> ⚡️ Parameter-Efficient and Robust Audio-Visual Classification under Modality Uncertainty
 
 ---
 
-## 📖 Introduction
+## 📖 Overview
 
-**Prompt the Missing** addresses the challenge of missing or corrupted modalities in real-world **audio-visual classification**. Instead of retraining large models for every scenario, our method introduces **learnable prompt tokens** at both **input** and **attention** levels to dynamically adapt to **uncertain modality availability**—**without modifying the backbone model**.
+**Prompt the Missing** introduces a parameter-efficient method for robust **audio-visual classification** under **uncertain or missing modalities**.
 
-We simulate modality degradation using a **case-wise training strategy**, enabling the model to learn generalizable representations for a wide range of real-world missing-modality settings.
+Instead of modifying the backbone or requiring full fine-tuning, we inject **learnable prompt tokens** at both input and attention levels. These prompts allow dynamic adaptation to modality corruption while keeping the pretrained model frozen.
 
 ---
-
 
 ## 🔥 Key Highlights
 
-- ✅ **End-to-End Framework for Missing Modality**
-  - Designed to handle **uncertain and unpredictable modality loss**, including complete, partial, and noisy cases.
-- 🧠 **Dual-Level Prompt Injection**
-  - Introduces **learnable prompts** at both **input-level** and **attention-level**, improving robustness to missing modalities.
-- ⚙️ **Backbone-Freezing & Plug-and-Play**
-  - Does **not require retraining** of the backbone model. Works with pretrained models through efficient prompt injection.
-- 📦 **Parameter-Efficient and Scalable**
-  - Adds **<1% extra parameters**, reduces **memory usage by 82.3%**, and cuts **training time by 96%**, enabling fast deployment and training.
-- 🧪 **Flexible Inference Modes**
-  - Supports both **Concat-Based** and **Situation-Specific** evaluation strategies for different deployment scenarios.
-- 📈 **Superior Performance**
-  - Outperforms full fine-tuning baselines by **up to +10%** in noisy and missing modality settings on the UrbanSound8K-AV benchmark.
-
+- ✅ **Missing Modality Resilience**: Handles complete, partial, or noisy modality loss (audio or visual).
+- 🧠 **Dual-Level Prompt Injection**: Injects learnable tokens at both input and attention levels.
+- ⚙️ **Backbone-Freezing**: No backbone retraining required — lightweight and plug-and-play.
+- ⚡ **Highly Efficient**:
+  - 90% fewer parameters than full fine-tuning
+  - 96% faster training time
+  - 82.3% less memory usage
+- 📈 **Superior Robustness**: Outperforms CAV-MAE, LoRA, and Adapter in missing-modality settings.
+- 🧪 **Flexible Evaluation**: Supports both Concat-based (uncertain conditions) and Situation-specific prompting.
 
 ---
 
@@ -60,43 +55,45 @@ We evaluate our framework on two audio-visual benchmarks:
 
 ### UrbanSound8K-AV
 
-| Noise Type        | CAV-MAE Accuracy | Ours (Prompt Learning) |
-|-------------------|------------------|------------------------|
-| Complete          | 0.99             | 0.99                   |
-| Noise to Audio    | 0.69             | **0.94**               |
-| Noise to Vision   | 0.83             | **0.83**               |
-| Noise to Both     | 0.71             | **0.88**               |
-| **Average**       | 0.80             | **0.91**               |
+| Noise Type        | CAV-MAE | LoRA | Adapter | Prompt (Ours) |
+|-------------------|--------:|-----:|--------:|--------------:|
+| Complete          |   0.99  | 0.98 |   0.98  |       **0.99** |
+| Noise to Audio    |   0.69  | 0.84 |   0.88  |       **0.94** |
+| Noise to Vision   |   0.83  | 0.84 |   0.81  |        0.83    |
+| Noise to Both     |   0.71  | 0.80 |   0.81  |       **0.88** |
+| **Average**       |   0.80  | 0.87 |   0.87  |       **0.91** |
 
 ### CIFAR10-AV
 
-| Noise Type        | CAV-MAE Accuracy | Ours (Prompt Learning) |
-|-------------------|------------------|------------------------|
-| Complete          | 0.93             | 0.93                   |
-| Noise to Audio    | 0.66             | **0.89**               |
-| Noise to Vision   | 0.70             | **0.84**               |
-| Noise to Both     | 0.60             | **0.78**               |
-| **Average**       | 0.72             | **0.86**               |
+| Noise Type        | CAV-MAE | LoRA | Adapter | Prompt (Ours) |
+|-------------------|--------:|-----:|--------:|--------------:|
+| Complete          |   0.93  | 0.92 |   0.91  |       **0.93** |
+| Noise to Audio    |   0.66  | 0.77 |   0.81  |       **0.89** |
+| Noise to Vision   |   0.70  | 0.76 |   **0.85** |     0.84    |
+| Noise to Both     |   0.60  | **0.79** | 0.72  |        0.78    |
+| **Average**       |   0.72  | 0.81 |   0.82  |       **0.86** |
 
 ---
 
-## 📊 Prompt Usage Strategy Comparison
+## 📊 Prompt Usage Strategy
 
-| Evaluation Strategy     | UrbanSound8K-AV | CIFAR10-AV |
-|-------------------------|------------------|-------------|
-| Concat-Based            | 0.76             | 0.74        |
-| Situation-Specific      | **0.87**         | **0.86**    |
+| Strategy           | UrbanSound8K-AV | CIFAR10-AV |
+|--------------------|------------------|------------|
+| Concat-Based       | 0.76             | 0.74       |
+| Situation-Specific | **0.87**         | **0.86**   |
 
-> ✅ Even without knowing which modality is missing, our model generalizes well using prompt attention routing.
+> Even without degradation labels, our model generalizes via attention-based prompt routing.
 
 ---
 
-## ⚡️ Efficiency
+## ⚡️ Efficiency & Parameter Comparison
 
-| Method          | Memory (GiB) | Time per Epoch |
-|------------------|--------------|-----------------|
-| Full Fine-Tuning | 95.12        | 60.0 sec        |
-| Prompt Learning  | **17.85**    | **2.4 sec**     |
+| Method             | Params (M) | Memory (GiB) | Time/Epoch | Accuracy |
+|--------------------|-----------:|-------------:|------------:|----------:|
+| Full Fine-Tuning   |      86.4  |        95.1  |     60.0 s  |     0.88  |
+| LoRA               |      12.6  |        27.2  |     10.1 s  |     0.86  |
+| Adapter            |      15.4  |        32.8  |     12.5 s  |     0.87  |
+| **Prompt (Ours)**  |   **3.2**  |   **17.8**   | **2.4 s**   | **0.88**  |
 
 ---
 
