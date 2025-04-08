@@ -59,7 +59,7 @@ We evaluate our framework on two audio-visual benchmarks:
 |-------------------|--------:|-----:|--------:|--------------:|
 | Complete          |   0.99  | 0.98 |   0.98  |       **0.99** |
 | Noise to Audio    |   0.69  | 0.84 |   0.88  |       **0.94** |
-| Noise to Vision   |   0.83  | 0.84 |   0.81  |        0.83    |
+| Noise to Vision   |   0.83  | **0.84** |   0.81  |        0.83    |
 | Noise to Both     |   0.71  | 0.80 |   0.81  |       **0.88** |
 | **Average**       |   0.80  | 0.87 |   0.87  |       **0.91** |
 
