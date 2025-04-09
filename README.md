@@ -34,7 +34,8 @@ Instead of modifying the backbone or requiring full fine-tuning, we inject **lea
 
 ## 🧠 Architecture Overview
 
-![image](https://github.com/user-attachments/assets/ce6cc96a-83a2-4b5f-83f4-b581fb08c24a)
+![image](https://github.com/user-attachments/assets/791af4a1-6cbf-4059-b023-52e1e27ad4f7)
+
 
 - **Input-Level Prompt**: Injected before modality encoders.  
 - **Attention-Level Prompt**: Appended into cross-attention keys and values.  
